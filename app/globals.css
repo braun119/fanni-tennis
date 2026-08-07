@@ -341,14 +341,8 @@ h2 {
   border-radius: 100px;
   background: rgba(243, 237, 227, 0.92);
   color: var(--ink);
-  grid-template-columns: 54px 1fr 1.25fr;
+  grid-template-columns: 1fr 1.25fr;
   text-align: left;
-}
-
-.service-list article > span {
-  color: var(--terra-dark);
-  font-family: "Libre Baskerville", Georgia, serif;
-  font-size: 0.8rem;
 }
 
 .service-list h3, .service-list p { margin: 0; }
@@ -752,7 +746,7 @@ footer p { margin: 0; text-align: center; }
   .career-coffee { grid-column: 1 / span 5; }
   .career-statement { grid-column: 6 / span 7; }
 
-  .service-list article { grid-template-columns: 44px 1fr; }
+  .service-list article { grid-template-columns: 1fr; }
   .service-list p { display: none; }
 
   .event-track {

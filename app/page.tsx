@@ -240,17 +240,14 @@ legalább olyan fontosak, mint a tökéletes ütés.
           <h2>Miből választhatok?</h2>
           <div className="service-list">
             <article>
-              <span>01</span>
               <h3>Egyéni oktatás</h3>
               <p>Személyre szabott fejlődés, a saját ritmusodhoz igazítva.</p>
             </article>
             <article>
-              <span>02</span>
               <h3>Csoportos gyermek foglalkozás</h3>
               <p>Játékos alapok és sok sikerélmény egy támogató csapatban.</p>
             </article>
             <article>
-              <span>03</span>
               <h3>Táborok</h3>
               <p>Intenzív, élményekkel teli napok a pályán és azon kívül.</p>
             </article>
