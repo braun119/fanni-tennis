@@ -1,0 +1,27 @@
+name: Sync Upstream
+
+on:
+  schedule:
+    - cron: '0 2 * * *' # Minden nap UTC szerint 02:00-kor fut le
+  workflow_dispatch: # Manuális gomb a teszteléshez
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Repository letöltése
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Frissítések lekérése és összefűzése
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote add upstream https://github.com/ottocesc/fanni-tennis.git
+          git fetch upstream
+          git merge upstream/main --allow-unrelated-histories -m "auto: szinkronizálás az eredeti tárhellyel" || true
+          git push origin main
