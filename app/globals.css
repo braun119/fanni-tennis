@@ -38,7 +38,7 @@ h1, h2, h3, p, blockquote { margin-top: 0; }
 
 h2 {
   margin-bottom: 1.7rem;
-  font-size: clamp(2rem, 4vw, 4rem);
+  font-size: clamp(1.6rem, 3.2vw, 3.2rem);
   font-style: italic;
   font-weight: 400;
   line-height: 1.12;
@@ -60,12 +60,35 @@ h2 {
 }
 
 .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
   font-size: 1.05rem;
   font-weight: 700;
   letter-spacing: -0.035em;
 }
 
 .brand em { font-weight: 400; }
+
+.brand-mark {
+  position: relative;
+  display: block;
+  width: 113px;
+  height: 84px;
+  overflow: hidden;
+  flex: 0 0 auto;
+  background: transparent;
+}
+
+.brand-mark img {
+  position: absolute;
+  top: -12px;
+  left: 0;
+  width: 113px;
+  max-width: none;
+  height: auto;
+  mix-blend-mode: darken;
+}
 
 .nav {
   display: flex;
@@ -159,10 +182,11 @@ h2 {
 .hero h1 {
   max-width: 940px;
   margin: 0 auto 2.3rem;
-  font-size: clamp(2.5rem, 5vw, 5.1rem);
+  font-size: clamp(1rem, 4vw, 2.9rem);
   font-weight: 400;
   line-height: 1.08;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .hero h1 em {
@@ -174,6 +198,7 @@ h2 {
   max-width: 900px;
   margin: 0 auto 2.9rem;
   font-size: clamp(0.88rem, 1.25vw, 1.08rem);
+  text-transform: uppercase;
   line-height: 1.8;
 }
 
@@ -247,6 +272,9 @@ h2 {
 }
 
 .about-copy { max-width: 760px; }
+.about-copy h2 {
+  white-space: nowrap;
+}
 .about-copy > p:not(.section-kicker) { margin-bottom: 1.3rem; }
 .about-copy .button { margin-top: 1.3rem; }
 
@@ -267,39 +295,54 @@ h2 {
   line-height: 1.55;
 }
 
+.quote-band:not(.quote-small) blockquote {
+  font-family: "Libre Baskerville", Georgia, serif;
+  text-transform: uppercase;
+}
+
 .career {
-  display: grid;
-  column-gap: clamp(1rem, 1.8vw, 2rem);
-  grid-template-columns: repeat(12, 1fr);
-  row-gap: clamp(4rem, 8vw, 8rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3rem, 6vw, 5rem);
   background: var(--beige);
 }
 
 .career-copy {
-  align-self: start;
-  grid-column: 1 / span 7;
+  width: 100%;
 }
 
-.career-shadow { grid-column: 10 / span 3; }
+.career-copy > p {
+  max-width: 900px;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+.career-gallery {
+  display: grid;
+  width: 51.2%;
+  margin-right: auto;
+  margin-left: auto;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.8rem, 1.6vw, 1.6rem);
+}
 
 .career-shadow img, .career-coffee img {
-  height: 100%;
-  min-height: 380px;
-  object-fit: cover;
+  height: auto;
+  min-height: 0;
+  aspect-ratio: auto;
+  object-fit: contain;
 }
 
 .career-shadow img { object-position: 55% center; }
-.career-coffee { grid-column: 1 / span 4; }
 
 .career-coffee img {
-  min-height: 330px;
   object-position: 48% center;
 }
 
 .career-statement {
-  align-self: start;
-  padding-left: clamp(2rem, 4vw, 4.5rem);
-  grid-column: 5 / span 7;
+  align-self: center;
+  padding-left: 0;
 }
 
 .career-statement p {
@@ -309,7 +352,7 @@ h2 {
   text-transform: uppercase;
 }
 
-.career-statement .button { margin-top: 1.3rem; }
+.career-statement .button { margin-top: 0; }
 
 .services {
   position: relative;
@@ -339,7 +382,7 @@ h2 {
   align-items: center;
   padding: 1.35rem 1.8rem;
   border-radius: 100px;
-  background: rgba(243, 237, 227, 0.92);
+  background: rgba(243, 237, 227, 0.82);
   color: var(--ink);
   grid-template-columns: 1fr 1.25fr;
   text-align: left;
@@ -381,7 +424,6 @@ h2 {
 .section-heading-row h2 {
   max-width: 850px;
   margin-bottom: 0;
-  font-size: clamp(1.6rem, 3.2vw, 3.2rem);
   letter-spacing: -0.02em;
   white-space: nowrap;
 }
@@ -572,6 +614,11 @@ h2 {
 
 .quote-small { min-height: 280px; }
 
+.quote-small blockquote {
+  font-family: "Libre Baskerville", Georgia, serif;
+  text-transform: uppercase;
+}
+
 .quote-small cite {
   display: block;
   margin-top: 0.6rem;
@@ -593,6 +640,7 @@ h2 {
 }
 
 .contact-copy h2 { margin-bottom: 1rem; }
+.contact-copy > p { margin-bottom: 1.5rem; }
 
 .phone {
   display: inline-block;
@@ -741,11 +789,6 @@ footer p { margin: 0; text-align: center; }
     margin: 0 auto;
   }
 
-  .career-copy { grid-column: 1 / span 8; }
-  .career-shadow { grid-column: 9 / span 4; }
-  .career-coffee { grid-column: 1 / span 5; }
-  .career-statement { grid-column: 6 / span 7; }
-
   .service-list article { grid-template-columns: 1fr; }
   .service-list p { display: none; }
 
@@ -773,6 +816,8 @@ footer p { margin: 0; text-align: center; }
   body { font-size: 15px; }
   .site-header { padding: 0 5vw; }
   .brand { font-size: 0.9rem; }
+  .brand-mark { width: 97px; height: 72px; }
+  .brand-mark img { top: -10.5px; width: 97px; }
 
   .hero {
     min-height: 760px;
@@ -781,9 +826,9 @@ footer p { margin: 0; text-align: center; }
     background-position: 62% center;
   }
 
-  .hero h1 { font-size: clamp(2rem, 10vw, 3.25rem); }
+  .hero h1 { font-size: clamp(1rem, 4vw, 2.9rem); }
   .section { padding: 5.5rem 5vw; }
-  h2 { font-size: 2.25rem; }
+  h2 { font-size: 1.8rem; }
   .about { gap: 4.5rem; }
 
   .quote-band {
@@ -792,19 +837,18 @@ footer p { margin: 0; text-align: center; }
   }
 
   .career {
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
+    gap: 3rem;
   }
 
-  .career-shadow, .career-coffee { width: calc(100% - 22px); }
-  .career-coffee { order: 3; }
+  .career-copy { align-self: stretch; }
+
+  .career-gallery { gap: 0.8rem; }
+  .career-shadow, .career-coffee { width: 100%; }
   .career-statement {
-    order: 4;
     padding-left: 0;
   }
 
-  .career-shadow img, .career-coffee img { min-height: 330px; }
+  .career-shadow img, .career-coffee img { min-height: 0; }
 
   .services {
     padding-right: 5vw;
