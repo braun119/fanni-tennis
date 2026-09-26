@@ -25,6 +25,12 @@ const events = [
     image: "/images/event-community-day.jpg",
     position: "center",
   },
+  {
+    title: "Premium Teniszélmény Losinj Szigetén",
+    text: "",
+    image: "/images/event-losinj.png",
+    position: "center",
+  },
 ];
 
 const benefits = [
@@ -65,6 +71,8 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<NavigationSection>("rolam");
   const [sent, setSent] = useState(false);
+  const [activeEvent, setActiveEvent] = useState(0);
+  const [eventsPaused, setEventsPaused] = useState(false);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [testimonialPaused, setTestimonialPaused] = useState(false);
   const eventTrack = useRef<HTMLDivElement>(null);
@@ -135,11 +143,30 @@ export default function Home() {
   };
 
   const moveEvents = (direction: number) => {
-    eventTrack.current?.scrollBy({
-      left: direction * Math.min(eventTrack.current.clientWidth * 0.86, 390),
+    setEventsPaused(true);
+    setActiveEvent((current) => (current + direction + events.length) % events.length);
+  };
+
+  useEffect(() => {
+    const track = eventTrack.current;
+    const card = track?.children[activeEvent] as HTMLElement | undefined;
+    if (!track || !card) return;
+
+    track.scrollTo({
+      left: card.offsetLeft - track.offsetLeft,
       behavior: "smooth",
     });
-  };
+  }, [activeEvent]);
+
+  useEffect(() => {
+    if (eventsPaused) return;
+
+    const timer = window.setInterval(() => {
+      setActiveEvent((current) => (current + 1) % events.length);
+    }, 5000);
+
+    return () => window.clearInterval(timer);
+  }, [eventsPaused]);
 
   const moveTestimonial = (direction: number) => {
     setActiveTestimonial((current) =>
@@ -190,7 +217,7 @@ export default function Home() {
           aria-label={t("Tennis with Fanni - főoldal")}
         >
           <span className="brand-mark" aria-hidden="true">
-            <img src="/images/twf.png" alt="" />
+            <img src="/images/twf-bold.png" alt="" />
           </span>
           <span>PLAY IMPROVE<em> BELONG</em></span>
         </a>
@@ -308,7 +335,7 @@ export default function Home() {
           <h2>{t("Edzői szemlélet")}</h2>
           <p>{t("Edzőként nem egyszerűen technikát oktatok. Azt szeretném, hogy önbizalommal mozogj a pályán, élvezd a játékot, és támogató közösségünk részévé válj!")}</p>
           <p>{t("Hiszem, hogy jó hangulatban sokkal gyorsabban lehet fejlődni. Ezért nálam minden edzés egyszerre tanulás, kihívás és feltöltődés.")}</p>
-          <p>{t("Emellett, kis létszámú, exkluzív teniszélményeket szervezek azoknak, akik szeretnének személyes szakmai odafigyelést, aktív pihenést és felejthetetlen napokat közösen átélni. Azt vallom, hogy a teniszt érdemes minél szebb helyeken játszani.")}</p>
+          <p>{t("Év közben prémium teniszélményekkel színesítjük a palettát azok számára, akik szeretnének személyes szakmai odafigyelést, aktív pihenést és felejthetetlen napokat közösen átélni. Azt vallom, hogy a teniszt érdemes minél szebb helyeken játszani.")}</p>
         </div>
         <div className="career-gallery">
           <div className="career-shadow image-frame">
@@ -356,10 +383,24 @@ export default function Home() {
           <div><h2>{t("Ne maradj le a következő eseményeinkről!")}</h2></div>
           <div className="event-controls" aria-label={t("Események lapozása")}>
             <button type="button" onClick={() => moveEvents(-1)} aria-label={t("Előző esemény")}>←</button>
+            <button
+              type="button"
+              className="event-autoplay-toggle"
+              aria-label={eventsPaused ? t("Automatikus lapozás indítása") : t("Automatikus lapozás megállítása")}
+              aria-pressed={eventsPaused}
+              onClick={() => setEventsPaused((paused) => !paused)}
+            >
+              {eventsPaused ? "▶" : "❚❚"}
+            </button>
             <button type="button" onClick={() => moveEvents(1)} aria-label={t("Következő esemény")}>→</button>
           </div>
         </div>
-        <div className="event-track" ref={eventTrack}>
+        <div
+          className="event-track"
+          ref={eventTrack}
+          onPointerDown={() => setEventsPaused(true)}
+          aria-live="polite"
+        >
           {events.map((event, index) => (
             <article className="event-card" key={event.title}>
               <div className="event-image">
@@ -373,7 +414,7 @@ export default function Home() {
                 />
               </div>
               <h3>{t(event.title)}</h3>
-              <p>{t(event.text)}</p>
+              {event.text && <p>{t(event.text)}</p>}
             </article>
           ))}
         </div>

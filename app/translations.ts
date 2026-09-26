@@ -46,8 +46,8 @@ export const englishTranslations: Record<string, string> = {
     "As a coach, I do not simply teach technique. I want you to move confidently on the court, enjoy the game, and become part of our supportive community.",
   "Hiszem, hogy jó hangulatban sokkal gyorsabban lehet fejlődni. Ezért nálam minden edzés egyszerre tanulás, kihívás és feltöltődés.":
     "I believe progress comes much faster in a positive atmosphere. That is why every session with me combines learning, challenge, and recharging.",
-  "Emellett, kis létszámú, exkluzív teniszélményeket szervezek azoknak, akik szeretnének személyes szakmai odafigyelést, aktív pihenést és felejthetetlen napokat közösen átélni. Azt vallom, hogy a teniszt érdemes minél szebb helyeken játszani.":
-    "I also organize small, exclusive tennis experiences for those seeking personal professional attention, active relaxation, and unforgettable days together. I believe tennis should be played in the most beautiful places possible.",
+  "Év közben prémium teniszélményekkel színesítjük a palettát azok számára, akik szeretnének személyes szakmai odafigyelést, aktív pihenést és felejthetetlen napokat közösen átélni. Azt vallom, hogy a teniszt érdemes minél szebb helyeken játszani.":
+    "Throughout the year, we broaden our offering with premium tennis experiences for those seeking personal professional attention, active relaxation, and unforgettable days together. I believe tennis should be played in the most beautiful places possible.",
   "Két ember szív alakú árnyéka a teniszpályán":
     "Heart-shaped shadows of two people on a tennis court",
   "Kávé és croissant a teniszpálya mellett":
@@ -72,6 +72,8 @@ export const englishTranslations: Record<string, string> = {
   "Események lapozása": "Browse events",
   "Előző esemény": "Previous event",
   "Következő esemény": "Next event",
+  "Automatikus lapozás indítása": "Start automatic event rotation",
+  "Automatikus lapozás megállítása": "Pause automatic event rotation",
   "NŐI HÁZI BAJNOKSÁG": "WOMEN'S CLUB CHAMPIONSHIP",
   "Könnyed játék, sok nevetés és új ismeretségek a pálya mellett.":
     "Relaxed play, plenty of laughter, and new friendships beside the court.",
@@ -81,6 +83,8 @@ export const englishTranslations: Record<string, string> = {
   "IV. CSALÁDI NAP": "4TH FAMILY DAY",
   "Szülő és gyermek párban - vidám hangulatú csapatjátékok.":
     "Parents and children team up for cheerful group games.",
+  "Premium Teniszélmény Losinj Szigetén":
+    "Premium Tennis Experience on Losinj Island",
   "Akik már velünk játszanak": "What our players say",
   "Vélemény kiválasztása": "Select a testimonial",
   "vélemény": "testimonial",
