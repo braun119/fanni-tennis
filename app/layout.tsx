@@ -6,8 +6,8 @@ export const metadata: Metadata = {
   description:
     "Teniszoktatás, táborok és inspiráló közösségi események Fricska Fannival Székesfehérváron.",
   icons: {
-    icon: "/favicon.svg?v=2",
-    shortcut: "/favicon.svg?v=2",
+    icon: "/favicon-logo-terracotta.png?v=4",
+    shortcut: "/favicon-logo-terracotta.png?v=4",
   },
 };
 

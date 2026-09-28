@@ -63,7 +63,7 @@ h2 {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  font-size: 1.05rem;
+  font-size: 1.365rem;
   font-weight: 700;
   letter-spacing: -0.035em;
 }
@@ -76,6 +76,8 @@ h2 {
   width: 112.86px;
   height: 81.225px;
   flex: 0 0 auto;
+  margin-right: 3.5vw;
+  margin-left: -3.5vw;
   overflow: hidden;
   background: transparent;
 }
@@ -951,7 +953,12 @@ footer p { margin: 0; text-align: center; }
 @media (max-width: 680px) {
   body { font-size: 15px; }
   .site-header { padding: 0 5vw; }
-  .brand-mark { width: 94.905px; height: 68.4px; }
+  .brand-mark {
+    width: 94.905px;
+    height: 68.4px;
+    margin-right: 0;
+    margin-left: 0;
+  }
   .brand > span:last-child { display: none; }
 
   .language-switcher { margin-right: 0.15rem; }
