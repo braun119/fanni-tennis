@@ -313,7 +313,7 @@ export default function Home() {
 
       <section className="about section" id="rolam">
         <div className="about-photo image-frame">
-          <img src="/images/fanni-about.webp" alt={t("Fanni a teniszpályán labdákkal és ütővel")} />
+          <img src="/images/fanni-about-studio.jpeg" alt={t("Fanni portréja teniszütővel")} />
         </div>
         <div className="about-copy">
           <h2>{t("Örülök, hogy itt vagy!")}</h2>
@@ -481,7 +481,7 @@ export default function Home() {
 
       <section className="contact section" id="kapcsolat">
         <div className="contact-photo image-frame">
-          <img src="/images/fanni-contact.webp" alt={t("Fanni teniszlabda után nyúl a salakpályán")} />
+          <img src="/images/fanni-contact-studio.jpeg" alt={t("Fanni teniszezés közben fehér ruhában")} />
         </div>
         <div className="contact-copy">
           <h2>{t("Kapcsolat")}</h2>
