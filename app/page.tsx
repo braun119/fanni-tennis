@@ -217,7 +217,7 @@ export default function Home() {
           aria-label={t("Tennis with Fanni - főoldal")}
         >
           <span className="brand-mark" aria-hidden="true">
-            <img src="/images/twf-bold.png" alt="" />
+            <img src="/images/twf-bold-transparent.png" alt="" />
           </span>
           <span>PLAY IMPROVE<em> BELONG</em></span>
         </a>
@@ -258,9 +258,6 @@ export default function Home() {
             onClick={() => selectNavigationSection("kapcsolat")}
           >
             {t("Kapcsolat")}
-          </a>
-          <a className="instagram" href="#kapcsolat" onClick={closeMenu} aria-label="Instagram">
-            IG
           </a>
         </nav>
 

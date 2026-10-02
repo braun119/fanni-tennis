@@ -63,7 +63,7 @@ h2 {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  font-size: 1.365rem;
+  font-size: 1.57rem;
   font-weight: 700;
   letter-spacing: -0.035em;
 }
@@ -73,24 +73,20 @@ h2 {
 .brand-mark {
   position: relative;
   display: block;
-  width: 112.86px;
-  height: 81.225px;
+  width: 105.6px;
+  height: 86.4px;
   flex: 0 0 auto;
-  margin-right: 3.5vw;
-  margin-left: -3.5vw;
+  margin-right: 1.5vw;
+  margin-left: -2vw;
   overflow: hidden;
   background: transparent;
 }
 
 .brand-mark img {
-  position: absolute;
-  top: -51.1%;
-  left: -18.6%;
-  width: 135.6%;
-  max-width: none;
-  height: auto;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   filter: hue-rotate(263deg) saturate(170%) brightness(122%);
-  mix-blend-mode: multiply;
 }
 
 .nav {
@@ -100,7 +96,7 @@ h2 {
   margin-left: auto;
 }
 
-.nav > a:not(.instagram) {
+.nav > a {
   position: relative;
   padding: 0.8rem 0;
   font-family: "Libre Baskerville", Georgia, serif;
@@ -110,7 +106,7 @@ h2 {
   text-transform: uppercase;
 }
 
-.nav > a:not(.instagram)::after {
+.nav > a::after {
   position: absolute;
   right: 0;
   bottom: 0.35rem;
@@ -131,17 +127,6 @@ h2 {
 }
 
 .nav > a.active { color: var(--terra-dark); }
-
-.instagram {
-  display: grid;
-  width: 27px;
-  height: 27px;
-  place-items: center;
-  border: 1px solid currentColor;
-  border-radius: 50%;
-  font-size: 0.58rem;
-  font-weight: 700;
-}
 
 .language-switcher {
   display: flex;
@@ -890,7 +875,7 @@ footer p { margin: 0; text-align: center; }
     visibility: visible;
   }
 
-  .nav > a:not(.instagram) {
+  .nav > a {
     display: flex;
     width: 100%;
     min-height: 48px;
@@ -903,18 +888,12 @@ footer p { margin: 0; text-align: center; }
     white-space: normal;
   }
 
-  .nav > a:not(.instagram)::after { display: none; }
+  .nav > a::after { display: none; }
 
-  .nav > a:not(.instagram):hover,
-  .nav > a:not(.instagram):focus-visible,
-  .nav > a:not(.instagram).active {
+  .nav > a:hover,
+  .nav > a:focus-visible,
+  .nav > a.active {
     background: rgba(168, 105, 74, 0.12);
-  }
-
-  .nav .instagram {
-    width: 44px;
-    height: 44px;
-    margin: 0.25rem 0 0 0.4rem;
   }
 
   .hero {
@@ -954,8 +933,8 @@ footer p { margin: 0; text-align: center; }
   body { font-size: 15px; }
   .site-header { padding: 0 5vw; }
   .brand-mark {
-    width: 94.905px;
-    height: 68.4px;
+    width: 93.6px;
+    height: 76.8px;
     margin-right: 0;
     margin-left: 0;
   }
