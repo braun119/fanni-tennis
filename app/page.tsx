@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, PointerEvent, useEffect, useRef, useState } from "react";
+import { ArrowLeft, ArrowRight, Pause, Play } from "lucide-react";
 import { englishTranslations, Language, localizedMetadata } from "./translations";
 
 const navigationSections = ["rolam", "szolgaltatasok", "esemenyek", "kapcsolat"] as const;
@@ -71,6 +72,8 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<NavigationSection>("rolam");
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState(false);
   const [activeEvent, setActiveEvent] = useState(0);
   const [eventsPaused, setEventsPaused] = useState(false);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -139,6 +142,7 @@ export default function Home() {
     setLanguage(nextLanguage);
     setActiveTestimonial(0);
     setSent(false);
+    setSendError(false);
     closeMenu();
   };
 
@@ -201,10 +205,42 @@ export default function Home() {
     }
   };
 
-  const submitForm = (event: FormEvent<HTMLFormElement>) => {
+  const submitForm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    event.currentTarget.reset();
-    setSent(true);
+    if (sending) return;
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    if (String(formData.get("_honey") ?? "").trim()) {
+      form.reset();
+      setSent(true);
+      return;
+    }
+
+    setSending(true);
+    setSent(false);
+    setSendError(false);
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/ffricska@yahoo.com", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(Object.fromEntries(formData.entries())),
+      });
+
+      if (!response.ok) throw new Error("Contact form delivery failed");
+
+      form.reset();
+      setSent(true);
+    } catch {
+      setSendError(true);
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -261,40 +297,66 @@ export default function Home() {
           </a>
         </nav>
 
-        <div className="language-switcher" role="group" aria-label={t("Nyelvválasztás")}>
-          <button
-            className={language === "en" ? "active" : undefined}
-            type="button"
-            lang="en"
-            aria-pressed={language === "en"}
-            aria-label="Switch to English"
-            onClick={() => selectLanguage("en")}
+        <div className="header-actions">
+          <div className="language-switcher" role="group" aria-label={t("Nyelvválasztás")}>
+            <button
+              className={language === "en" ? "active" : undefined}
+              type="button"
+              lang="en"
+              aria-pressed={language === "en"}
+              aria-label="Switch to English"
+              onClick={() => selectLanguage("en")}
+            >
+              EN
+            </button>
+            <button
+              className={language === "hu" ? "active" : undefined}
+              type="button"
+              lang="hu"
+              aria-pressed={language === "hu"}
+              aria-label="Váltás magyar nyelvre"
+              onClick={() => selectLanguage("hu")}
+            >
+              HU
+            </button>
+          </div>
+
+          <a
+            className="instagram-link"
+            href="https://www.instagram.com/tenniswithfanni/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={t("Instagram profil megnyitása")}
           >
-            EN
-          </button>
+            <svg
+              aria-hidden="true"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+            </svg>
+          </a>
+
           <button
-            className={language === "hu" ? "active" : undefined}
+            className="menu-toggle"
             type="button"
-            lang="hu"
-            aria-pressed={language === "hu"}
-            aria-label="Váltás magyar nyelvre"
-            onClick={() => selectLanguage("hu")}
+            aria-expanded={menuOpen}
+            aria-controls="primary-navigation"
+            aria-label={menuOpen ? t("Menü bezárása") : t("Menü megnyitása")}
+            onClick={() => setMenuOpen((open) => !open)}
           >
-            HU
+            <span />
+            <span />
           </button>
         </div>
-
-        <button
-          className="menu-toggle"
-          type="button"
-          aria-expanded={menuOpen}
-          aria-controls="primary-navigation"
-          aria-label={menuOpen ? t("Menü bezárása") : t("Menü megnyitása")}
-          onClick={() => setMenuOpen((open) => !open)}
-        >
-          <span />
-          <span />
-        </button>
       </header>
 
       <section className="hero" id="top">
@@ -379,7 +441,9 @@ export default function Home() {
         <div className="section-heading-row">
           <div><h2>{t("Ne maradj le a következő eseményeinkről!")}</h2></div>
           <div className="event-controls" aria-label={t("Események lapozása")}>
-            <button type="button" onClick={() => moveEvents(-1)} aria-label={t("Előző esemény")}>←</button>
+            <button type="button" onClick={() => moveEvents(-1)} aria-label={t("Előző esemény")}>
+              <ArrowLeft aria-hidden="true" size={20} strokeWidth={1.8} />
+            </button>
             <button
               type="button"
               className="event-autoplay-toggle"
@@ -387,9 +451,15 @@ export default function Home() {
               aria-pressed={eventsPaused}
               onClick={() => setEventsPaused((paused) => !paused)}
             >
-              {eventsPaused ? "▶" : "❚❚"}
+              {eventsPaused ? (
+                <Play aria-hidden="true" size={17} strokeWidth={2} />
+              ) : (
+                <Pause aria-hidden="true" size={17} strokeWidth={2} />
+              )}
             </button>
-            <button type="button" onClick={() => moveEvents(1)} aria-label={t("Következő esemény")}>→</button>
+            <button type="button" onClick={() => moveEvents(1)} aria-label={t("Következő esemény")}>
+              <ArrowRight aria-hidden="true" size={20} strokeWidth={1.8} />
+            </button>
           </div>
         </div>
         <div
@@ -484,7 +554,21 @@ export default function Home() {
           <h2>{t("Kapcsolat")}</h2>
           <p>{t("Ne halogasd tovább!")}<br />{t("Gyere el egy edzésre és ismerjük meg egymást")}</p>
           <a className="phone" href="tel:+36704892542">+36 70 489 2542</a>
-          <form onSubmit={submitForm}>
+          <form
+            action="https://formsubmit.co/ffricska@yahoo.com"
+            method="POST"
+            onSubmit={submitForm}
+          >
+            <input type="hidden" name="_subject" value="Új érdeklődés – Tennis with Fanni" />
+            <input type="hidden" name="_template" value="table" />
+            <input
+              className="form-honey"
+              name="_honey"
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+            />
             <div className="field-row">
               <label>
                 <span>{t("Név")}</span>
@@ -507,9 +591,15 @@ export default function Home() {
               <input type="checkbox" required />
               <span>{t("Elfogadom az adatkezelési tájékoztatót.")}</span>
             </label>
-            <button className="button button-dark" type="submit">{t("Elküldöm")}</button>
-            <p className="form-status" aria-live="polite">
-              {sent ? t("Köszönöm! Hamarosan felveszem veled a kapcsolatot.") : ""}
+            <button className="button button-dark" type="submit" disabled={sending}>
+              {sending ? t("Küldés...") : t("Elküldöm")}
+            </button>
+            <p className={`form-status${sendError ? " error" : ""}`} aria-live="polite">
+              {sent
+                ? t("Köszönöm! Hamarosan felveszem veled a kapcsolatot.")
+                : sendError
+                  ? t("Az üzenetet nem sikerült elküldeni. Kérlek, próbáld újra vagy hívj telefonon.")
+                  : ""}
             </p>
           </form>
         </div>
@@ -518,7 +608,13 @@ export default function Home() {
       <footer>
         <a href="#top">Tennis with Fanni</a>
         <p>© 2026 Tennis with Fanni - {t("Minden jog fenntartva")}</p>
-        <a href="#kapcsolat">{t("Adatkezelési tájékoztató")}</a>
+        <a
+          href="/adatkezelesi-tajekoztato.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {t("Adatkezelési tájékoztató")}
+        </a>
       </footer>
     </main>
   );
