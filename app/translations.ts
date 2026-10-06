@@ -19,6 +19,7 @@ export const englishTranslations: Record<string, string> = {
   "Menü bezárása": "Close menu",
   "Fő navigáció": "Main navigation",
   "Nyelvválasztás": "Language selection",
+  "Instagram profil megnyitása": "Open Instagram profile",
   "Rólam": "About",
   "Szolgáltatások": "Services",
   "Események": "Events",
@@ -127,8 +128,11 @@ export const englishTranslations: Record<string, string> = {
   "Üzenet": "Message",
   "Elfogadom az adatkezelési tájékoztatót.": "I accept the privacy policy.",
   "Elküldöm": "Send message",
+  "Küldés...": "Sending...",
   "Köszönöm! Hamarosan felveszem veled a kapcsolatot.":
     "Thank you! I will be in touch soon.",
+  "Az üzenetet nem sikerült elküldeni. Kérlek, próbáld újra vagy hívj telefonon.":
+    "The message could not be sent. Please try again or call me.",
   "Minden jog fenntartva": "All rights reserved",
   "Adatkezelési tájékoztató": "Privacy policy",
 };
