@@ -2,6 +2,7 @@
 
 import { FormEvent, PointerEvent, useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Pause, Play } from "lucide-react";
+import EventsDropdown from "./EventsDropdown";
 import { englishTranslations, Language, localizedMetadata } from "./translations";
 
 const navigationSections = ["rolam", "szolgaltatasok", "esemenyek", "kapcsolat"] as const;
@@ -279,14 +280,18 @@ export default function Home() {
           >
             {t("Szolgáltatások")}
           </a>
-          <a
-            className={activeSection === "esemenyek" ? "active" : undefined}
-            href="#esemenyek"
-            aria-current={activeSection === "esemenyek" ? "location" : undefined}
-            onClick={() => selectNavigationSection("esemenyek")}
-          >
-            {t("Események")}
-          </a>
+          <EventsDropdown
+            id="home-events-dropdown"
+            label={t("Események")}
+            currentEventsLabel={t("Aktuális események")}
+            currentEventsHref="#esemenyek"
+            getawaysLabel={t("2027-es utazások")}
+            getawaysHref="/utazasok-2027"
+            kidsCampsLabel={t("Gyerektáborok")}
+            kidsCampsHref="#szolgaltatasok"
+            currentEventsActive={activeSection === "esemenyek"}
+            onNavigate={closeMenu}
+          />
           <a
             className={activeSection === "kapcsolat" ? "active" : undefined}
             href="#kapcsolat"
