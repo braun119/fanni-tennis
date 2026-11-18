@@ -87,8 +87,8 @@ export const englishTranslations: Record<string, string> = {
   "IV. CSALÁDI NAP": "4TH FAMILY DAY",
   "Szülő és gyermek párban - vidám hangulatú csapatjátékok.":
     "Parents and children team up for cheerful group games.",
-  "Premium Teniszélmény Losinj Szigetén":
-    "Premium Tennis Experience on Losinj Island",
+  "KARÁCSONYI HÁZI GYERMEKVERSENY":
+    "CHRISTMAS CHILDREN'S CLUB TOURNAMENT",
   "Akik már velünk játszanak": "What our players say",
   "Vélemény kiválasztása": "Select a testimonial",
   "vélemény": "testimonial",

@@ -125,11 +125,11 @@ const copy = {
 
 const trips = [
   {
-    destination: "La Manga",
+    destination: "Abama Tenerife",
     countryHu: "Spanyolország",
     countryEn: "Spain",
-    timingHu: "Március",
-    timingEn: "March",
+    timingHu: "Január",
+    timingEn: "January",
     textHu:
       "Indítsuk együtt a szezont a mediterrán napfényben, fókuszált tenisszel és feltöltő közös pillanatokkal.",
     textEn:
@@ -150,8 +150,8 @@ const trips = [
     destination: "Lošinj",
     countryHu: "Horvátország",
     countryEn: "Croatia",
-    timingHu: "Június vége",
-    timingEn: "Late June",
+    timingHu: "JÚNIUS",
+    timingEn: "JUNE",
     textHu:
       "Nyárindító teniszutazás az Adria egyik legszebb szigetén, fenyőillatú pályákkal és tengerparti estékkel.",
     textEn:
@@ -161,8 +161,8 @@ const trips = [
     destination: "Lošinj",
     countryHu: "Horvátország",
     countryEn: "Croatia",
-    timingHu: "Szeptember közepe",
-    timingEn: "Mid-September",
+    timingHu: "SZEPTEMBER",
+    timingEn: "SEPTEMBER",
     textHu:
       "Visszatérés a szigetre a bársonyos utószezonban: aktív napok, személyes figyelem és közös feltöltődés.",
     textEn:
@@ -183,12 +183,12 @@ const trips = [
 
 const destinationSignatures = [
   {
-    name: "La Manga",
-    image: "/images/getaways-2027/la-manga-signature.jpg",
-    altHu: "La Manga városképe a Mar Menor partján",
-    altEn: "La Manga cityscape beside the Mar Menor",
-    credit: "La Manga Club",
-    source: "https://www.lamangaclub.com/en/sports/tenis-padel",
+    name: "ABAMA TENERIFE",
+    image: "/images/getaways-2027/la-manga-tennis-resort.jpg",
+    altHu: "Tenerife teniszpályái pálmafákkal és a tengerparti üdülőhellyel",
+    altEn: "Tenerife tennis courts with palm trees and the coastal resort",
+    credit: "Abama Hotels",
+    source: "https://www.abamahotels.com",
   },
   {
     name: "Mallorca",
@@ -405,9 +405,11 @@ export default function Getaways2027() {
               />
               <figcaption>
                 <h3>{destination.name}</h3>
-                <a href={destination.source} target="_blank" rel="noopener noreferrer">
-                  {destination.credit}
-                </a>
+                {destination.credit && destination.source && (
+                  <a href={destination.source} target="_blank" rel="noopener noreferrer">
+                    {destination.credit}
+                  </a>
+                )}
               </figcaption>
             </figure>
           ))}

@@ -10,6 +10,12 @@ type NavigationSection = (typeof navigationSections)[number];
 
 const events = [
   {
+    title: "KARÁCSONYI HÁZI GYERMEKVERSENY",
+    text: "",
+    image: "/images/event-karacsonyi-gyermekverseny-2026.png",
+    position: "center",
+  },
+  {
     title: "NŐI HÁZI BAJNOKSÁG",
     text: "Könnyed játék, sok nevetés és új ismeretségek a pálya mellett.",
     image: "/images/event-community.jpg",
@@ -25,12 +31,6 @@ const events = [
     title: "IV. CSALÁDI NAP",
     text: "Szülő és gyermek párban - vidám hangulatú csapatjátékok.",
     image: "/images/event-community-day.jpg",
-    position: "center",
-  },
-  {
-    title: "Premium Teniszélmény Losinj Szigetén",
-    text: "",
-    image: "/images/event-losinj.png",
     position: "center",
   },
 ];
