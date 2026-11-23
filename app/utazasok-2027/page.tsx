@@ -125,7 +125,7 @@ const copy = {
 
 const trips = [
   {
-    destination: "Abama Tenerife",
+    destination: "TENERIFE",
     countryHu: "Spanyolország",
     countryEn: "Spain",
     timingHu: "Január",
@@ -183,26 +183,26 @@ const trips = [
 
 const destinationSignatures = [
   {
-    name: "ABAMA TENERIFE",
-    image: "/images/getaways-2027/la-manga-tennis-resort.jpg",
-    altHu: "Tenerife teniszpályái pálmafákkal és a tengerparti üdülőhellyel",
-    altEn: "Tenerife tennis courts with palm trees and the coastal resort",
-    credit: "Abama Hotels",
-    source: "https://www.abamahotels.com",
+    name: "TENERIFE",
+    image: "/images/getaways-2027/bahia-del-duque.jpg",
+    altHu: "A Bahia del Duque pálmafás medencéi és óceáni panorámája Tenerifén",
+    altEn: "Bahia del Duque pools, palm trees and ocean panorama in Tenerife",
+    credit: "Bahia Del Duque",
+    source: "https://thetaishotels.com/en/bahia-del-duque/",
   },
   {
     name: "Mallorca",
-    image: "/images/getaways-2027/mallorca-signature.jpg",
-    altHu: "A palmái katedrális tükröződése a Parc de la Mar vizén",
-    altEn: "Palma Cathedral reflected in the water at Parc de la Mar",
+    image: "/images/getaways-2027/mallorca-tennis-courts.jpg",
+    altHu: "Salakos teniszpályák Mallorca tengerpartján",
+    altEn: "Clay tennis courts on the Mallorcan coast",
     credit: "Sporting Club Portals",
     source: "https://www.sportingclubportals.com",
   },
   {
     name: "Lošinj",
-    image: "/images/getaways-2027/losinj-signature.jpg",
-    altHu: "Mali Lošinj panorámája az Adria partján",
-    altEn: "Panorama of Mali Lošinj on the Adriatic coast",
+    image: "/images/getaways-2027/losinj-aerial-sunset.jpg",
+    altHu: "Lošinj erdős tengeröble és üdülőhelye naplementében",
+    altEn: "Lošinj's forested bay and resort at sunset",
     credit: "Hotel Bellevue Losinj",
     source: "https://www.losinj-hotels.com/en/hotels-and-villas/hotel-bellevue",
   },
