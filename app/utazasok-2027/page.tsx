@@ -46,6 +46,7 @@ const copy = {
     introText:
       "Tavasztól őszig olyan napokra készülünk, ahol a minőségi tenisz, az aktív pihenés és a jó társaság természetesen találkozik.",
     tripNumber: "utazás",
+    details: "Részletek",
     detailsSoon: "Részletek hamarosan",
     interest: "Érdekel ez az utazás",
     momentsKicker: "Közös pillanataink",
@@ -98,6 +99,7 @@ const copy = {
     introText:
       "From spring to autumn, we are planning days where quality tennis, active relaxation and great company come together naturally.",
     tripNumber: "getaway",
+    details: "Details",
     detailsSoon: "Details coming soon",
     interest: "I’m interested in this getaway",
     momentsKicker: "Moments together",
@@ -134,6 +136,7 @@ const trips = [
       "Indítsuk együtt a szezont a mediterrán napfényben, fókuszált tenisszel és feltöltő közös pillanatokkal.",
     textEn:
       "Let’s begin the season together in the Mediterranean sun, with focused tennis and energising shared moments.",
+    detailsHref: "/utazasok-2027/tenerife",
   },
   {
     destination: "Mallorca",
@@ -145,6 +148,7 @@ const trips = [
       "Tavaszi teniszélmény szigeti ritmusban: fejlődés a pályán, kikapcsolódás és inspiráló társaság.",
     textEn:
       "A spring tennis experience at island pace: progress on court, time to unwind and inspiring company.",
+    detailsHref: null,
   },
   {
     destination: "Lošinj",
@@ -156,6 +160,7 @@ const trips = [
       "Nyárindító teniszutazás az Adria egyik legszebb szigetén, fenyőillatú pályákkal és tengerparti estékkel.",
     textEn:
       "A summer-opening tennis escape on one of the Adriatic’s most beautiful islands, with pine-framed courts and evenings by the sea.",
+    detailsHref: null,
   },
   {
     destination: "Lošinj",
@@ -167,6 +172,7 @@ const trips = [
       "Visszatérés a szigetre a bársonyos utószezonban: aktív napok, személyes figyelem és közös feltöltődés.",
     textEn:
       "A return to the island in the gentle late season: active days, personal attention and time to recharge together.",
+    detailsHref: null,
   },
   {
     destination: "Mallorca",
@@ -178,6 +184,7 @@ const trips = [
       "Zárjuk a szezont napsütésben, lendületes teniszezéssel és a közösséghez méltó mediterrán hangulattal.",
     textEn:
       "Let’s close the season in the sunshine, with energetic tennis and the Mediterranean atmosphere our community loves.",
+    detailsHref: null,
   },
 ] as const;
 
@@ -440,7 +447,13 @@ export default function Getaways2027() {
                 <span><MapPin aria-hidden="true" size={17} />{language === "hu" ? trip.countryHu : trip.countryEn}</span>
               </div>
               <p className={styles.tripDescription}>{language === "hu" ? trip.textHu : trip.textEn}</p>
-              <p className={styles.soon}>{t.detailsSoon}</p>
+              {trip.detailsHref ? (
+                <a className={styles.soonLink} href={trip.detailsHref}>
+                  {t.details}
+                </a>
+              ) : (
+                <p className={styles.soon}>{t.detailsSoon}</p>
+              )}
               <a className={styles.textLink} href="/#kapcsolat">
                 {t.interest}<ArrowUpRight aria-hidden="true" size={17} />
               </a>
