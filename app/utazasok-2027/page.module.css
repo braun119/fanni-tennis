@@ -161,6 +161,24 @@
   margin-bottom: 1.65rem;
 }
 
+.soonLink {
+  display: inline-flex;
+  margin-bottom: 1.65rem;
+  padding-bottom: 0.28rem;
+  border-bottom: 1px solid currentColor;
+  color: var(--terra-dark);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: color 180ms ease;
+}
+
+.soonLink:hover,
+.soonLink:focus-visible {
+  color: var(--ink);
+}
+
 .textLink {
   display: inline-flex;
   align-items: center;
